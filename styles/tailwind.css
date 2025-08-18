@@ -9,7 +9,7 @@
     letter-spacing: 0.013em; /* loosen spacing ~1.2% to better match Figma */
   }
   .font-gtText {
-    letter-spacing: 0; /* body copy normal */
+    letter-spacing: 0.01em; /* body copy normal */
   }
   .font-gtAmerica {
     letter-spacing: 0.1em; /* eyebrow caps like HOW IT WORKS */

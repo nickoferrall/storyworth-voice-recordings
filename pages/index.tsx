@@ -71,28 +71,28 @@ export default function HomePage() {
           <h2 className="font-gtAmerica uppercase font-medium text-[16px] leading-[20px] text-black">
             HOW IT WORKS
           </h2>
-          <ol className="divide-y divide-slate-200">
-            <li className="flex gap-6 items-baseline py-6">
+          <ol className="divide-y divide-slate-200 w-full">
+            <li className="flex gap-6 items-baseline py-5">
               <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
                 01
               </span>
-              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21] max-w-[667px]">
+              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21]">
                 Enter your phone number and Storyworth will call you to record your story.
               </p>
             </li>
-            <li className="flex gap-6 items-baseline py-6">
+            <li className="flex gap-7 items-baseline py-5">
               <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
                 02
               </span>
-              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21] max-w-[667px]">
+              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21]">
                 During the call we’ll record your story over the phone.
               </p>
             </li>
-            <li className="flex gap-6 items-baseline py-6">
+            <li className="flex gap-7 items-baseline py-5">
               <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
                 03
               </span>
-              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21] max-w-[667px]">
+              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21]">
                 After the call, an audio clip of your recording will be uploaded to your
                 story where you can then request it to be transcribed.
               </p>
