@@ -4,6 +4,16 @@
 @tailwind utilities;
 
 @layer base {
+  /* Default letter-spacing for our GT font stacks so we don't set tracking per element */
+  .font-gtDisplay {
+    letter-spacing: 0.013em; /* loosen spacing ~1.2% to better match Figma */
+  }
+  .font-gtText {
+    letter-spacing: 0; /* body copy normal */
+  }
+  .font-gtAmerica {
+    letter-spacing: 0.1em; /* eyebrow caps like HOW IT WORKS */
+  }
   :root {
     --background: 233 22% 18%; /* #23243a */
     --foreground: 0 0% 100%; /* #fff */

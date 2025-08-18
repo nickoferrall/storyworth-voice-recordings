@@ -30,12 +30,12 @@ export default function HomePage() {
             priority
           />
         </div>
-        <div className="mx-auto w-full md:w-[741px] md:relative md:-mt-5">
-          <h1 className="font-gtDisplay text-brand text-[36px] leading-[44px] tracking-[-0.01em] font-normal">
+        <div className="mx-auto w-full md:w-[741px] md:relative md:-mt-5 pl-6">
+          <h1 className="font-gtDisplay text-brand text-[36px] leading-[44px] font-normal">
             Record your voice over the phone and we’ll transcribe your story.
           </h1>
 
-          <label className="block text-[#12473A] mt-10 mb-2 font-gtText font-[350] text-[16px] leading-[20px]">
+          <label className="block text-[#12473A] mt-8 mb-2 font-gtText font-[350] text-[16px] leading-[20px]">
             Your phone number
           </label>
           <input
@@ -60,7 +60,7 @@ export default function HomePage() {
           >
             {loading ? 'Calling…' : 'Call me now'}
           </button>
-          <hr className="my-8 border-t border-slate-200" />
+          <hr className="my-10 border-t border-slate-200" />
           {error && <p className="text-red-600 mt-3">{error.message}</p>}
           {data && (
             <p className="text-gray-700 mt-4">
@@ -68,12 +68,12 @@ export default function HomePage() {
             </p>
           )}
 
-          <h2 className="font-gtAmerica uppercase font-medium text-[16px] leading-[20px] tracking-[0.1em] text-black">
+          <h2 className="font-gtAmerica uppercase font-medium text-[16px] leading-[20px] text-black">
             HOW IT WORKS
           </h2>
-          <ol className="mt-3 divide-y divide-slate-200">
+          <ol className="divide-y divide-slate-200">
             <li className="flex gap-6 items-baseline py-6">
-              <span className="font-gtDisplay text-[28px] leading-[36px] tracking-[-0.01em] font-normal text-[#000000] w-[30px]">
+              <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
                 01
               </span>
               <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21] max-w-[667px]">
@@ -81,7 +81,7 @@ export default function HomePage() {
               </p>
             </li>
             <li className="flex gap-6 items-baseline py-6">
-              <span className="font-gtDisplay text-[28px] leading-[36px] tracking-[-0.01em] font-normal text-[#000000] w-[30px]">
+              <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
                 02
               </span>
               <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21] max-w-[667px]">
@@ -89,7 +89,7 @@ export default function HomePage() {
               </p>
             </li>
             <li className="flex gap-6 items-baseline py-6">
-              <span className="font-gtDisplay text-[28px] leading-[36px] tracking-[-0.01em] font-normal text-[#000000] w-[30px]">
+              <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
                 03
               </span>
               <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21] max-w-[667px]">
