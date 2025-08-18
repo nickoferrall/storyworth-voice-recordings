@@ -1,0 +1,3 @@
+mutation CreateBreak($input: CreateBreakInput!) {
+  createBreak(input: $input)
+}

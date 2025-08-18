@@ -1,0 +1,16 @@
+query GetInvitationByToken($token: String!) {
+  getInvitationByToken(token: $token) {
+    id
+    teamId
+    token
+    email
+    status
+    team {
+      id
+      name
+      teamCaptain {
+        name
+      }
+    }
+  }
+}

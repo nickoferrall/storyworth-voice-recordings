@@ -1,0 +1,3 @@
+mutation AddDirectoryComp($input: AddDirectoryCompInput!) {
+  addDirectoryComp(input: $input)
+}

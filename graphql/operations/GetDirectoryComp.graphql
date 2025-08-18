@@ -1,0 +1,33 @@
+query GetDirectoryComp($id: String!) {
+  getDirectoryComp(id: $id) {
+    id
+    title
+    location
+    country
+    startDate
+    endDate
+    price
+    currency
+    website
+    email
+    logo
+    description
+    instagramHandle
+    createdAt
+    updatedAt
+    competitionId
+    competition {
+      id
+      startDateTime
+      endDateTime
+    }
+    categories {
+      id
+      difficulty
+      gender
+      teamSize
+      isSoldOut
+      tags
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation DeleteHeat($id: String!) {
+  deleteHeat(id: $id) {
+    id
+    startTime
+    workoutId
+  }
+}

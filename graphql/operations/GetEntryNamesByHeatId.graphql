@@ -1,0 +1,7 @@
+query GetEntryNamesByHeatId($heatId: String!) {
+  getLanesByHeatId(heatId: $heatId) {
+    entry {
+      name
+    }
+  }
+}

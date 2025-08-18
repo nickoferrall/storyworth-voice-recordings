@@ -1,0 +1,3 @@
+mutation DeleteRegistrationField($registrationFieldId: String!) {
+  deleteRegistrationField(registrationFieldId: $registrationFieldId)
+}

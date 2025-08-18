@@ -1,0 +1,24 @@
+query GetCompetitionSchedule($competitionId: String!) {
+  getHeatsByCompetitionId(competitionId: $competitionId) {
+    id
+    name
+    startTime
+    workout {
+      id
+      name
+    }
+    lanes {
+      entry {
+        name
+        team {
+          name
+          members {
+            user {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+mutation UpdateUserBio($bio: String!) {
+  updateUserBio(bio: $bio) {
+    id
+    email
+    firstName
+    lastName
+    picture
+    bio
+    isSuperUser
+    isVerified
+    createdAt
+    updatedAt
+  }
+}

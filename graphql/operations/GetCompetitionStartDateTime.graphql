@@ -1,0 +1,5 @@
+query GetCompetitionStartDateTime($id: String!) {
+  getCompetitionById(id: $id) {
+    startDateTime
+  }
+}

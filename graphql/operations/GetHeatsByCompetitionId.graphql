@@ -1,0 +1,10 @@
+query GetHeatsByCompetitionId($competitionId: String!) {
+  getHeatsByCompetitionId(competitionId: $competitionId) {
+    id
+    startTime
+    workoutId
+    name
+    registrationsCount
+    maxLimitPerHeat
+  }
+}

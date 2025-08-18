@@ -1,0 +1,10 @@
+query GetSentEmails($compId: String!) {
+  getSentEmails(compId: $compId) {
+    id
+    userId
+    recipients
+    subject
+    message
+    sentAt
+  }
+}

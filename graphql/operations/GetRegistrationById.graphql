@@ -1,0 +1,41 @@
+query GetRegistrationById($id: String!) {
+  getRegistrantById(id: $id) {
+    id
+    user {
+      id
+      firstName
+      lastName
+      name
+      email
+    }
+    team {
+      id
+      name
+      members {
+        id
+        user {
+          id
+          name
+          email
+        }
+      }
+    }
+    registrationAnswers {
+      id
+      registrationField {
+        id
+        type
+        question
+        options
+      }
+      answer
+    }
+    ticketType {
+      id
+      name
+      teamSize
+    }
+    createdAt
+    teamName
+  }
+}

@@ -1,0 +1,3 @@
+query CheckReferralCode($referralCode: String!) {
+  checkReferralCode(referralCode: $referralCode)
+}

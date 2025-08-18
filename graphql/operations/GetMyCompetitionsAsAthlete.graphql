@@ -1,0 +1,6 @@
+query GetMyCompetitionsAsAthlete {
+  getMyCompetitionsAsAthlete {
+    id
+    name
+  }
+}

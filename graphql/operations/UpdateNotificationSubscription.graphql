@@ -1,0 +1,10 @@
+mutation UpdateNotificationSubscription($input: UpdateNotificationSubscriptionInput!) {
+  updateNotificationSubscription(input: $input) {
+    id
+    email
+    eventType
+    countries
+    locations
+    tags
+  }
+}

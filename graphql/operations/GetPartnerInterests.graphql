@@ -1,0 +1,83 @@
+query GetPartnerInterests(
+  $status: String
+  $interestType: String
+  $directoryCompId: String
+  $competitionId: String
+) {
+  getPartnerInterests(
+    status: $status
+    interestType: $interestType
+    directoryCompId: $directoryCompId
+    competitionId: $competitionId
+  ) {
+    id
+    userId
+    interestType
+    partnerPreference
+    categoryId
+    description
+    phone
+    instagram
+    status
+    createdAt
+    updatedAt
+    user {
+      id
+      firstName
+      lastName
+      picture
+      bio
+    }
+    category {
+      id
+      difficulty
+      gender
+      teamSize
+      directoryComp {
+        id
+        title
+      }
+    }
+    ticketType {
+      id
+      name
+      teamSize
+      competition {
+        id
+        name
+      }
+    }
+    teamMembers {
+      id
+      name
+      email
+      userId
+      status
+      user {
+        id
+        firstName
+        lastName
+        picture
+      }
+    }
+    partnerRequests {
+      id
+      status
+      fromUser {
+        id
+        firstName
+        lastName
+        picture
+      }
+      fromInterest {
+        id
+        user {
+          id
+          firstName
+          lastName
+          picture
+        }
+      }
+    }
+  }
+}

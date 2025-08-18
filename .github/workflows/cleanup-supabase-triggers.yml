@@ -1,0 +1,31 @@
+name: Cleanup Supabase Triggers
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove trigger file
+        run: |
+          TRIGGER_FILE="supabase/pr-${{ github.event.pull_request.number }}.trigger"
+          if [ -f "$TRIGGER_FILE" ]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git rm "$TRIGGER_FILE"
+            git commit -m "Clean up Supabase trigger for closed PR #${{ github.event.pull_request.number }}"
+            git push
+          else
+            echo "Trigger file not found, nothing to clean up"
+          fi

@@ -1,0 +1,17 @@
+mutation UpdateHeat(
+  $id: String!
+  $startTime: DateTime
+  $ticketTypeIds: [String!]
+  $maxLimitPerHeat: Int
+) {
+  updateHeat(
+    id: $id
+    startTime: $startTime
+    ticketTypeIds: $ticketTypeIds
+    maxLimitPerHeat: $maxLimitPerHeat
+  ) {
+    id
+    startTime
+    workoutId
+  }
+}

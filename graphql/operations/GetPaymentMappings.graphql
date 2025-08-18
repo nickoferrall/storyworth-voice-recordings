@@ -1,0 +1,18 @@
+query GetPaymentMappings($emails: String, $days: String) {
+  getPaymentMappings(emails: $emails, days: $days) {
+    email
+    transactionId
+    amount
+    currency
+    date
+    competition {
+      id
+      name
+      orgName
+    }
+    ticketType {
+      id
+      name
+    }
+  }
+}

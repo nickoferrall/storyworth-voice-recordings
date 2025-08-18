@@ -1,0 +1,9 @@
+mutation UnlinkDirectoryCompFromCompetition(
+  $directoryCompId: String!
+  $competitionId: String!
+) {
+  unlinkDirectoryCompFromCompetition(
+    directoryCompId: $directoryCompId
+    competitionId: $competitionId
+  )
+}

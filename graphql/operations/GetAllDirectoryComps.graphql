@@ -1,0 +1,28 @@
+query GetAllDirectoryComps {
+  getAllDirectoryComps {
+    id
+    title
+    teamSize
+    location
+    country
+    startDate
+    endDate
+    price
+    currency
+    website
+    ticketWebsite
+    ctaLink
+    email
+    instagramHandle
+    logo
+    description
+    categories {
+      id
+      gender
+      teamSize
+      difficulty
+      isSoldOut
+      tags
+    }
+  }
+}

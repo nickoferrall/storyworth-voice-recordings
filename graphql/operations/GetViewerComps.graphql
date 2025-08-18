@@ -1,0 +1,8 @@
+query GetViewerComps {
+  getCompetitionsByUser {
+    id
+    name
+    startDateTime
+    registrationsCount
+  }
+}

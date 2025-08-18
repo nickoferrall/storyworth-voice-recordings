@@ -1,0 +1,22 @@
+mutation CreateWorkoutVideo(
+  $workoutId: String!
+  $title: String!
+  $description: String
+  $url: String!
+  $orderIndex: Int
+) {
+  createWorkoutVideo(
+    workoutId: $workoutId
+    title: $title
+    description: $description
+    url: $url
+    orderIndex: $orderIndex
+  ) {
+    id
+    title
+    description
+    url
+    orderIndex
+    workoutId
+  }
+}

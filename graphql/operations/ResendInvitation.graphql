@@ -1,0 +1,3 @@
+mutation ResendInvitation($invitationId: String!) {
+  resendInvitation(invitationId: $invitationId)
+}

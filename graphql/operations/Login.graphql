@@ -1,0 +1,22 @@
+mutation Login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    user {
+      id
+      firstName
+      lastName
+      email
+      isSuperUser
+      isVerified
+      picture
+      createdAt
+      updatedAt
+      invitationId
+      referredBy
+      referralCode
+      orgId
+      # athleteCompetitionIds
+      # createdCompetitionIds
+    }
+    error
+  }
+}

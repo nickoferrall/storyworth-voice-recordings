@@ -1,0 +1,10 @@
+mutation UpdateLaneHeat($id: String!, $heatId: String!) {
+  updateLaneHeat(id: $id, heatId: $heatId) {
+    id
+    number
+    entryId
+    heatId
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,19 @@
+mutation UpdateUserById(
+  $userId: String!
+  $competitionId: String!
+  $firstName: String
+  $lastName: String
+) {
+  updateUserById(
+    userId: $userId
+    competitionId: $competitionId
+    firstName: $firstName
+    lastName: $lastName
+  ) {
+    id
+    email
+    firstName
+    lastName
+    name
+  }
+}

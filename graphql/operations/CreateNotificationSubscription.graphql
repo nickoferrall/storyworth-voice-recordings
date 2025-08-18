@@ -1,0 +1,10 @@
+mutation CreateNotificationSubscription($input: CreateNotificationSubscriptionInput!) {
+  createNotificationSubscription(input: $input) {
+    id
+    email
+    eventType
+    countries
+    locations
+    tags
+  }
+}

@@ -1,0 +1,18 @@
+query GetRegistrationStats($days: String) {
+  getRegistrationStats(days: $days) {
+    totalRegistrations
+    periodStart
+    periodEnd
+    competitions {
+      registrationsInPeriod
+      competition {
+        id
+        name
+        startDateTime
+        registrationsCount
+        participantsCount
+        orgName
+      }
+    }
+  }
+}

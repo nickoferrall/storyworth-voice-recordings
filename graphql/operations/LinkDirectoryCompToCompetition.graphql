@@ -1,0 +1,9 @@
+mutation LinkDirectoryCompToCompetition(
+  $directoryCompId: String!
+  $competitionId: String!
+) {
+  linkDirectoryCompToCompetition(
+    directoryCompId: $directoryCompId
+    competitionId: $competitionId
+  )
+}

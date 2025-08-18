@@ -1,0 +1,19 @@
+mutation CreateScore(
+  $value: String!
+  $laneId: String!
+  $isCompleted: Boolean!
+  $scorecard: String
+  $note: String
+) {
+  createScore(
+    value: $value
+    laneId: $laneId
+    isCompleted: $isCompleted
+    scorecard: $scorecard
+    note: $note
+  ) {
+    id
+    value
+    isCompleted
+  }
+}

@@ -1,0 +1,23 @@
+mutation UpdateWorkout($id: String!, $input: UpdateWorkoutInput!) {
+  updateWorkout(id: $id, input: $input) {
+    id
+    name
+    description
+    releaseDateTime
+    competitionId
+    location
+    scoreType
+    unitOfMeasurement
+    timeCap
+    includeStandardsVideo
+    createdAt
+    updatedAt
+    videos {
+      id
+      title
+      description
+      url
+      orderIndex
+    }
+  }
+}

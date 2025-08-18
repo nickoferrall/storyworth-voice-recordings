@@ -1,0 +1,3 @@
+mutation InviteToCompetition($competitionId: String!, $email: String!) {
+  inviteToCompetition(competitionId: $competitionId, email: $email)
+}

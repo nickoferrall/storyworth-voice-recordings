@@ -1,0 +1,42 @@
+query GetCompetitionById($id: String!) {
+  getCompetitionById(id: $id) {
+    id
+    name
+    description
+    startDateTime
+    endDateTime
+    timezone
+    releaseDateTime
+    hasWorkouts
+    directoryCompId
+    logo
+    orgName
+    website
+    source
+    registrationEnabled
+    currency
+    price
+    createdBy {
+      email
+    }
+    org {
+      id
+      name
+      email
+      twitter
+      description
+      facebook
+      instagram
+      youtube
+      website
+    }
+    address {
+      venue
+      street
+      city
+      country
+      postcode
+      region
+    }
+  }
+}

@@ -1,0 +1,13 @@
+mutation DeleteRegistration(
+  $registrationId: ID!
+  $userId: ID!
+  $competitionId: ID!
+  $teamId: ID
+) {
+  deleteRegistration(
+    registrationId: $registrationId
+    userId: $userId
+    competitionId: $competitionId
+    teamId: $teamId
+  )
+}

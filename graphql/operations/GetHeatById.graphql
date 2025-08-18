@@ -1,0 +1,18 @@
+query GetHeatById($id: String!) {
+  getHeatById(id: $id) {
+    id
+    availableLanes
+    maxLimitPerHeat
+    ticketTypes {
+      id
+      name
+    }
+    allTicketTypes {
+      id
+      name
+    }
+    workout {
+      unitOfMeasurement
+    }
+  }
+}

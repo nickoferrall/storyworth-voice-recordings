@@ -1,0 +1,10 @@
+query GetRegistrationAnswersByCompetitionId($competitionId: String!) {
+  getRegistrationsByCompetitionId(competitionId: $competitionId) {
+    registrationAnswers {
+      answer
+      registrationField {
+        question
+      }
+    }
+  }
+}

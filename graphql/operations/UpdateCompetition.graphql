@@ -1,0 +1,52 @@
+mutation UpdateCompetition(
+  $id: String!
+  $name: String
+  $email: String
+  $types: [CompetitionType!]
+  $description: String
+  $startDateTime: DateTime
+  $endDateTime: DateTime
+  $venue: String
+  $street: String
+  $city: String
+  $country: String
+  $postcode: String
+  $orgName: String
+  $facebook: String
+  $instagram: String
+  $twitter: String
+  $youtube: String
+  $timezone: String
+  $registrationEnabled: Boolean
+) {
+  updateCompetition(
+    id: $id
+    name: $name
+    email: $email
+    types: $types
+    description: $description
+    startDateTime: $startDateTime
+    endDateTime: $endDateTime
+    venue: $venue
+    street: $street
+    city: $city
+    country: $country
+    postcode: $postcode
+    orgName: $orgName
+    facebook: $facebook
+    instagram: $instagram
+    twitter: $twitter
+    youtube: $youtube
+    timezone: $timezone
+    registrationEnabled: $registrationEnabled
+  ) {
+    id
+    name
+    types
+    description
+    orgName
+    registrationEnabled
+    createdAt
+    updatedAt
+  }
+}

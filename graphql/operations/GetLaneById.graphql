@@ -1,0 +1,11 @@
+query GetLaneById($id: String!) {
+  getLaneById(id: $id) {
+    id
+    score {
+      id
+      value
+      scorecard
+      note
+    }
+  }
+}

@@ -1,0 +1,3 @@
+mutation AcceptCompetitionInvitation($token: String!) {
+  acceptCompetitionInvitation(token: $token)
+}

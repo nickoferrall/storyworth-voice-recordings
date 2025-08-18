@@ -1,0 +1,10 @@
+mutation UpdateLaneOrder($laneId: String!, $newPosition: Int!) {
+  updateLaneOrder(laneId: $laneId, newPosition: $newPosition) {
+    id
+    number
+    entryId
+    heatId
+    createdAt
+    updatedAt
+  }
+}

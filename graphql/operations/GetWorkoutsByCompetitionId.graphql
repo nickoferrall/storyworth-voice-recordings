@@ -1,0 +1,30 @@
+query GetWorkoutsByCompetitionId($competitionId: String!) {
+  getWorkoutsByCompetitionId(competitionId: $competitionId) {
+    id
+    name
+    description
+    releaseDateTime
+    competitionId
+    location
+    scoreType
+    unitOfMeasurement
+    timeCap
+    includeStandardsVideo
+    createdAt
+    updatedAt
+    isVisible
+    videos {
+      id
+      title
+      description
+      url
+      orderIndex
+    }
+    scoreSetting {
+      id
+      penalizeIncomplete
+      penalizeScaled
+      handleTie
+    }
+  }
+}

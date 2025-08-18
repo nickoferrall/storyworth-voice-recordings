@@ -1,0 +1,12 @@
+query GetScoreSettingById($id: String!) {
+  getScoreSettingById(id: $id) {
+    id
+    competitionId
+    penalizeIncomplete
+    penalizeScaled
+    scoring
+    handleTie
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,19 @@
+query GetScoreSettingByCompetitionId($competitionId: String!) {
+  getScoreSettingByCompetitionId(competitionId: $competitionId) {
+    id
+    competitionId
+    penalizeIncomplete
+    ticketTypeOrderIds
+    penalizeScaled
+    totalHeatsPerWorkout
+    firstHeatStartTime
+    heatsEveryXMinutes
+    oneTicketPerHeat
+    scoring
+    handleTie
+    heatLimitType
+    maxLimitPerHeat
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,7 @@
+mutation UpdateWorkoutVisibility($id: String!, $isVisible: Boolean!) {
+  updateWorkoutVisibility(id: $id, isVisible: $isVisible) {
+    id
+    name
+    isVisible
+  }
+}

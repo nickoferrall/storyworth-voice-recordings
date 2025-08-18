@@ -1,0 +1,8 @@
+mutation CreateHeats($input: [CreateHeatInput!]!, $competitionId: String!) {
+  createHeats(input: $input, competitionId: $competitionId) {
+    id
+    startTime
+    workoutId
+    name
+  }
+}

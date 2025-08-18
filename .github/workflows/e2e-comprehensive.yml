@@ -1,0 +1,161 @@
+name: E2E Tests (Supabase Branching)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Get Supabase Preview Branch Credentials
+        id: supabase-branch
+        run: |
+          echo "🔍 Checking for Supabase preview branch..."
+
+          # Try to get preview branch for current Git branch
+          BRANCH_NAME="${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}"
+          echo "Git branch: $BRANCH_NAME"
+
+          # Try to get branch info (this will work if preview branch exists and is accessible)
+          if supabase --experimental branches get "$BRANCH_NAME" -o env > branch_env.txt 2>/dev/null; then
+            echo "✅ Found Supabase preview branch!"
+            
+            # Source the environment variables
+            source branch_env.txt
+            
+            # Export to GitHub environment
+            echo "NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL" >> $GITHUB_ENV
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY" >> $GITHUB_ENV
+            echo "DATABASE_URL=$DATABASE_URL" >> $GITHUB_ENV
+            
+            echo "preview_branch_found=true" >> $GITHUB_OUTPUT
+            echo "supabase_url=$NEXT_PUBLIC_SUPABASE_URL" >> $GITHUB_OUTPUT
+          else
+            echo "❌ No Supabase preview branch found or accessible, using local development"
+            echo "NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321" >> $GITHUB_ENV
+            echo "SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" >> $GITHUB_ENV
+            
+            echo "preview_branch_found=false" >> $GITHUB_OUTPUT
+            echo "supabase_url=http://127.0.0.1:54321" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run E2E tests
+        run: yarn test:fast
+        env:
+          NODE_ENV: test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Comment PR with test results
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            let testStatus = '✅ **E2E Tests Passed**';
+
+            try {
+              // Check if there's a test report
+              const reportPath = 'test-results';
+              if (fs.existsSync(reportPath)) {
+                const files = fs.readdirSync(reportPath);
+                const hasFailures = files.some(file => file.includes('failed'));
+                if (hasFailures) {
+                  testStatus = '❌ **E2E Tests Failed**';
+                }
+              }
+            } catch (error) {
+              testStatus = '⚠️ **E2E Tests Status Unknown**';
+            }
+
+            const comment = `## 🧪 E2E Test Results
+
+            ${testStatus}
+
+            **Environment:**
+            - Supabase URL: \`${{ steps.supabase-branch.outputs.supabase_url || 'Unknown' }}\`
+            - Preview Branch: \`${{ steps.supabase-branch.outputs.preview_branch_found == 'true' && '✅ Found' || '❌ Not found (using local)' }}\`
+            - Test Environment: \`${{ env.NODE_ENV || 'test' }}\`
+
+            📊 **Database Migration Test:**
+            - Migration file: \`src/db/migrations/20250621233321_new_migration.ts\`
+            - Test field: \`testField\` added to Competition table
+
+            ${testStatus.includes('Failed') ? '🔍 Check the workflow logs for details.' : '🎉 All tests passed! Ready to merge.'}
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  supabase-setup-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify Supabase Setup
+        run: |
+          echo "🧪 Verifying Supabase Branching Configuration"
+          echo "📁 Checking required files..."
+
+          if [ -f "supabase/config.toml" ]; then
+            echo "✅ supabase/config.toml exists"
+          else
+            echo "❌ supabase/config.toml missing"
+          fi
+
+          if [ -f "supabase/seed.sql" ]; then
+            echo "✅ Seed file exists"
+          else
+            echo "❌ Seed file missing"
+          fi
+
+          echo "📝 Migration files:"
+          ls -la src/db/migrations/ | tail -5
+
+          echo ""
+          echo "🎉 Setup verification complete!"

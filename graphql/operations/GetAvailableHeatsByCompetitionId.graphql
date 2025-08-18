@@ -1,0 +1,17 @@
+query GetAvailableHeatsByCompetitionId($competitionId: String!, $ticketTypeId: String!) {
+  getAvailableHeatsByCompetitionId(
+    competitionId: $competitionId
+    ticketTypeId: $ticketTypeId
+  ) {
+    id
+    startTime
+    workoutId
+    maxLimitPerHeat
+    createdAt
+    updatedAt
+    ticketTypes {
+      id
+      name
+    }
+  }
+}

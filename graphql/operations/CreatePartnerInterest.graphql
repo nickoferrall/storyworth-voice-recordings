@@ -1,0 +1,29 @@
+mutation CreatePartnerInterest($input: CreatePartnerInterestInput!) {
+  createPartnerInterest(input: $input) {
+    id
+    userId
+    interestType
+    partnerPreference
+    categoryId
+    ticketTypeId
+    description
+    phone
+    instagram
+    status
+    createdAt
+    updatedAt
+    user {
+      id
+      name
+      picture
+    }
+    category {
+      id
+      difficulty
+      gender
+      teamSize
+      isSoldOut
+      tags
+    }
+  }
+}

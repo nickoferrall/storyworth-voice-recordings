@@ -1,0 +1,25 @@
+mutation UpdatePartnerRequest($input: UpdatePartnerRequestInput!) {
+  updatePartnerRequest(input: $input) {
+    id
+    fromInterestId
+    fromUserId
+    toInterestId
+    message
+    status
+    createdAt
+    updatedAt
+    fromUser {
+      id
+      name
+      picture
+    }
+    fromInterest {
+      id
+      userId
+    }
+    toInterest {
+      id
+      userId
+    }
+  }
+}

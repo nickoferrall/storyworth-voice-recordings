@@ -1,0 +1,13 @@
+query GetHeatByIdTicketSelector($id: String!) {
+  getHeatById(id: $id) {
+    id
+    ticketTypes {
+      id
+      name
+    }
+    allTicketTypes {
+      id
+      name
+    }
+  }
+}

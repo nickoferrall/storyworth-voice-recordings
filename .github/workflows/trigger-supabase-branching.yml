@@ -1,0 +1,50 @@
+name: Trigger Supabase Branching
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  trigger-supabase:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.pull_request.head.ref, 'supabase-auto-trigger') }}
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Check if trigger already exists
+        id: check-trigger
+        run: |
+          if [ -f "supabase/pr-${{ github.event.pull_request.number }}.trigger" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Supabase trigger file
+        if: steps.check-trigger.outputs.exists == 'false'
+        run: |
+          mkdir -p supabase
+          echo "# Supabase Branching Trigger for PR #${{ github.event.pull_request.number }}" > "supabase/pr-${{ github.event.pull_request.number }}.trigger"
+          echo "# Created: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> "supabase/pr-${{ github.event.pull_request.number }}.trigger"
+          echo "# Commit: ${{ github.event.pull_request.head.sha }}" >> "supabase/pr-${{ github.event.pull_request.number }}.trigger"
+          echo "#" >> "supabase/pr-${{ github.event.pull_request.number }}.trigger"
+          echo "# This file ensures Supabase Branching creates a preview branch for this PR" >> "supabase/pr-${{ github.event.pull_request.number }}.trigger"
+
+      - name: Commit trigger file
+        if: steps.check-trigger.outputs.exists == 'false'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add supabase/pr-${{ github.event.pull_request.number }}.trigger
+          git commit -m "Add Supabase trigger for PR #${{ github.event.pull_request.number }}"
+          git push

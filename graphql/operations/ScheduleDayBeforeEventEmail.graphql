@@ -1,0 +1,3 @@
+mutation ScheduleDayBeforeEventEmail($competitionId: ID!) {
+  scheduleDayBeforeEventEmail(competitionId: $competitionId)
+}

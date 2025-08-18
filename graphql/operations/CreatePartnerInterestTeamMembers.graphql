@@ -1,0 +1,25 @@
+mutation CreatePartnerInterestTeamMembers(
+  $partnerInterestId: String!
+  $teamMembers: [Json!]!
+) {
+  createPartnerInterestTeamMembers(
+    partnerInterestId: $partnerInterestId
+    teamMembers: $teamMembers
+  ) {
+    id
+    partnerInterestId
+    name
+    email
+    userId
+    status
+    invitationToken
+    createdAt
+    updatedAt
+    user {
+      id
+      firstName
+      lastName
+      picture
+    }
+  }
+}

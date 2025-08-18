@@ -1,0 +1,8 @@
+mutation CheckInAthlete($registrationId: String!, $isCheckedIn: Boolean!) {
+  checkInAthlete(registrationId: $registrationId, isCheckedIn: $isCheckedIn) {
+    id
+    userId
+    isCheckedIn
+    competitionId
+  }
+}

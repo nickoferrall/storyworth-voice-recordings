@@ -1,0 +1,20 @@
+query GetViewer {
+  getUser {
+    id
+    firstName
+    lastName
+    email
+    picture
+    bio
+    # athleteCompetitionIds
+    # createdCompetitionIds
+    isSuperUser
+    isVerified
+    createdAt
+    updatedAt
+    invitationId
+    referredBy
+    referralCode
+    orgId
+  }
+}

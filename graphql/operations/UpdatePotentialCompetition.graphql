@@ -1,0 +1,35 @@
+mutation UpdatePotentialCompetition(
+  $id: String!
+  $name: String
+  $description: String
+  $startDateTime: DateTime
+  $endDateTime: DateTime
+  $website: String
+  $email: String
+  $instagramHandle: String
+  $price: Float
+  $currency: String
+  $country: String
+  $state: String
+  $region: String
+  $venue: String
+  $city: String
+) {
+  updatePotentialCompetition(
+    id: $id
+    name: $name
+    description: $description
+    startDateTime: $startDateTime
+    endDateTime: $endDateTime
+    website: $website
+    email: $email
+    instagramHandle: $instagramHandle
+    price: $price
+    currency: $currency
+    country: $country
+    state: $state
+    region: $region
+    venue: $venue
+    city: $city
+  )
+}

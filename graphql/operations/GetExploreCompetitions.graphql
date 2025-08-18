@@ -1,0 +1,49 @@
+query GetExploreCompetitions(
+  $limit: Int!
+  $offset: Int!
+  $search: String
+  $countries: [String!]
+  $cities: [String!]
+  $genders: [String!]
+  $teamSize: String
+  $startDate: String
+  $endDate: String
+) {
+  getExploreCompetitions(
+    limit: $limit
+    offset: $offset
+    search: $search
+    countries: $countries
+    cities: $cities
+    genders: $genders
+    teamSize: $teamSize
+    startDate: $startDate
+    endDate: $endDate
+  ) {
+    id
+    name
+    startDateTime
+    endDateTime
+    logo
+    description
+    location
+    timezone
+    currency
+    price
+    source
+    address {
+      id
+      city
+      country
+      venue
+    }
+    ticketTypes {
+      id
+      name
+      price
+      currency
+      isVolunteer
+      teamSize
+    }
+  }
+}

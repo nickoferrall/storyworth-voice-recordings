@@ -1,0 +1,26 @@
+mutation UpdateDirectoryComp($input: UpdateDirectoryCompInput!) {
+  updateDirectoryComp(input: $input) {
+    id
+    title
+    location
+    country
+    price
+    currency
+    startDate
+    endDate
+    website
+    ticketWebsite
+    ctaLink
+    email
+    logo
+    instagramHandle
+    categories {
+      id
+      difficulty
+      gender
+      teamSize
+      isSoldOut
+      tags
+    }
+  }
+}

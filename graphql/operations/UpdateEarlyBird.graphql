@@ -1,0 +1,5 @@
+mutation UpdateEarlyBird($earlyBird: EarlyBirdInput!) {
+  updateEarlyBird(earlyBird: $earlyBird) {
+    id
+  }
+}

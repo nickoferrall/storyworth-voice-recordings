@@ -1,0 +1,7 @@
+query GetMaxEntries($competitionId: String!) {
+  getScoreSettingByCompetitionId(competitionId: $competitionId) {
+    id
+    heatLimitType
+    maxLimitPerHeat
+  }
+}

@@ -1,0 +1,3 @@
+mutation ApprovePotentialCompetitions($potentialCompetitionIds: [String!]!) {
+  approvePotentialCompetitions(potentialCompetitionIds: $potentialCompetitionIds)
+}

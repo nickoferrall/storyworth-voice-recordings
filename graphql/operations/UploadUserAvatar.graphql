@@ -1,0 +1,18 @@
+mutation UploadUserAvatar($image: String!) {
+  uploadUserAvatar(image: $image) {
+    id
+    firstName
+    lastName
+    email
+    isSuperUser
+    isVerified
+    picture
+    bio
+    createdAt
+    updatedAt
+    invitationId
+    referredBy
+    referralCode
+    orgId
+  }
+}

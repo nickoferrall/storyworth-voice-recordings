@@ -1,0 +1,21 @@
+query GetUnassignedEntriesByCompetitionId($competitionId: String!) {
+  getUnassignedEntriesByCompetitionId(competitionId: $competitionId) {
+    id
+    name
+    ticketType {
+      id
+      name
+      teamSize
+    }
+    team {
+      id
+      members {
+        id
+        user {
+          id
+          name
+        }
+      }
+    }
+  }
+}

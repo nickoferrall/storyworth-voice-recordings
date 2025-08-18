@@ -1,0 +1,8 @@
+query GetRegistrationEmailsByCompetitionId($competitionId: String!) {
+  getRegistrationsByCompetitionId(competitionId: $competitionId) {
+    id
+    user {
+      email
+    }
+  }
+}

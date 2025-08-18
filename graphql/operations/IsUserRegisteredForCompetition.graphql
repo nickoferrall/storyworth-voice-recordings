@@ -1,0 +1,3 @@
+query IsUserRegisteredForCompetition($competitionId: String!) {
+  isUserRegisteredForCompetition(competitionId: $competitionId)
+}

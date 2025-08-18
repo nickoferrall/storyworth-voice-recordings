@@ -1,0 +1,7 @@
+mutation UnassignEntry($laneId: String!) {
+  unassignEntry(laneId: $laneId) {
+    id
+    entryId
+    heatId
+  }
+}

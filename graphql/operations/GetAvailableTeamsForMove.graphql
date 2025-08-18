@@ -1,0 +1,22 @@
+query GetAvailableTeamsForMove(
+  $competitionId: String!
+  $ticketTypeId: String!
+  $excludeTeamId: String
+) {
+  getAvailableTeamsForMove(
+    competitionId: $competitionId
+    ticketTypeId: $ticketTypeId
+    excludeTeamId: $excludeTeamId
+  ) {
+    id
+    name
+    teamCaptainId
+    members {
+      id
+      user {
+        id
+        name
+      }
+    }
+  }
+}

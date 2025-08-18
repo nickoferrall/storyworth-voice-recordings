@@ -1,0 +1,38 @@
+mutation CreatePartnerRequest($input: CreatePartnerRequestInput!) {
+  createPartnerRequest(input: $input) {
+    id
+    fromInterestId
+    fromUserId
+    toInterestId
+    message
+    status
+    instagram
+    createdAt
+    updatedAt
+    fromInterest {
+      id
+      userId
+      user {
+        id
+        name
+        picture
+      }
+      categoryId
+    }
+    fromUser {
+      id
+      name
+      picture
+    }
+    toInterest {
+      id
+      userId
+      user {
+        id
+        name
+        picture
+      }
+      categoryId
+    }
+  }
+}

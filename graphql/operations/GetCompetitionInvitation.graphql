@@ -1,0 +1,19 @@
+query GetCompetitionInvitation($token: String!) {
+  getCompetitionInvitation(token: $token) {
+    id
+    email
+    competition {
+      id
+      name
+      startDateTime
+      endDateTime
+    }
+    sender {
+      id
+      firstName
+      lastName
+    }
+    createdAt
+    status
+  }
+}

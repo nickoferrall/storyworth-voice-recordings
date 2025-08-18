@@ -1,0 +1,10 @@
+mutation CreateRegistration($input: CreateRegistrationInput!) {
+  createRegistration(input: $input) {
+    id
+    firstName
+    lastName
+    # athleteCompetitionIds
+    # createdCompetitionIds
+    email
+  }
+}

@@ -1,0 +1,23 @@
+query GetRegistrationFieldsByCompetitionId(
+  $competitionId: String!
+  $isVolunteer: Boolean
+) {
+  getRegistrationFieldsByCompetitionId(
+    competitionId: $competitionId
+    isVolunteer: $isVolunteer
+  ) {
+    id
+    question
+    repeatPerAthlete
+    isEditable
+    type
+    requiredStatus
+    options
+    onlyTeams
+    ticketTypes {
+      id
+      name
+      isVolunteer
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation AssignEntryToHeat($entryId: String!, $heatId: String!) {
+  assignEntryToHeat(entryId: $entryId, heatId: $heatId) {
+    id
+    number
+    heatId
+    entryId
+  }
+}

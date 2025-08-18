@@ -1,0 +1,35 @@
+query GetDirectoryComps($initialLoad: Boolean!) {
+  getDirectoryComps(initialLoad: $initialLoad) {
+    id
+    title
+    teamSize
+    location
+    country
+    startDate
+    endDate
+    price
+    currency
+    website
+    ticketWebsite
+    ctaLink
+    email
+    instagramHandle
+    logo
+    description
+    region
+    competitionId
+    competition {
+      id
+      startDateTime
+      endDateTime
+    }
+    categories {
+      id
+      gender
+      teamSize
+      difficulty
+      isSoldOut
+      tags
+    }
+  }
+}

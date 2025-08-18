@@ -1,0 +1,25 @@
+query GetTicketTypesByCompetitionId($competitionId: String!) {
+  getTicketTypesByCompetitionId(competitionId: $competitionId) {
+    id
+    name
+    description
+    maxEntries
+    price
+    teamSize
+    currency
+    isVolunteer
+    competitionId
+    createdAt
+    isTeamNameRequired
+    registered
+    allowHeatSelection
+    hasAvailability
+    registrationFields {
+      id
+      question
+      type
+      requiredStatus
+      options
+    }
+  }
+}

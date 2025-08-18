@@ -1,0 +1,10 @@
+query GetEarlyBirdById($id: String!) {
+  earlyBirdById(id: $id) {
+    id
+    price
+    limit
+    startDateTime
+    endDateTime
+    ticketTypeId
+  }
+}

@@ -1,0 +1,26 @@
+query GetRegistrationsForExport($competitionId: String!) {
+  getRegistrationsByCompetitionId(competitionId: $competitionId) {
+    id
+    isCheckedIn
+    user {
+      name
+      email
+    }
+    team {
+      name
+    }
+    teamName
+    ticketType {
+      name
+    }
+    registrationAnswers {
+      answer
+      registrationField {
+        question
+        type
+        isEditable
+        options
+      }
+    }
+  }
+}

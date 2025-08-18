@@ -1,0 +1,12 @@
+query GetInvitationsByTeamId($teamId: String!) {
+  getInvitationsByTeamId(teamId: $teamId) {
+    id
+    email
+    status
+    createdAt
+    sentBy {
+      id
+      name
+    }
+  }
+}

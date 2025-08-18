@@ -1,0 +1,108 @@
+query GetPartnerRequests {
+  getPartnerRequests {
+    id
+    fromInterestId
+    fromUserId
+    toInterestId
+    message
+    phone
+    status
+    createdAt
+    updatedAt
+    fromUser {
+      id
+      firstName
+      lastName
+      picture
+      email
+    }
+    fromInterest {
+      id
+      userId
+      status
+      user {
+        id
+        firstName
+        lastName
+        picture
+        email
+      }
+      category {
+        id
+        difficulty
+        gender
+        teamSize
+        directoryComp {
+          id
+          title
+        }
+      }
+      ticketType {
+        id
+        name
+        teamSize
+        competition {
+          id
+          name
+        }
+      }
+      teamMembers {
+        id
+        name
+        email
+        userId
+        status
+        user {
+          id
+          firstName
+          lastName
+          picture
+        }
+      }
+    }
+    toInterest {
+      id
+      userId
+      status
+      user {
+        id
+        firstName
+        lastName
+        picture
+        email
+      }
+      category {
+        id
+        difficulty
+        gender
+        teamSize
+        directoryComp {
+          id
+          title
+        }
+      }
+      ticketType {
+        id
+        name
+        teamSize
+        competition {
+          id
+          name
+        }
+      }
+      teamMembers {
+        id
+        name
+        email
+        userId
+        status
+        user {
+          id
+          firstName
+          lastName
+          picture
+        }
+      }
+    }
+  }
+}

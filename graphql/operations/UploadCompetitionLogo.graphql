@@ -1,0 +1,7 @@
+mutation UploadCompetitionLogo($competitionId: String!, $image: String!) {
+  uploadCompetitionLogo(competitionId: $competitionId, image: $image) {
+    id
+    name
+    logo
+  }
+}
