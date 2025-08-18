@@ -1,4 +1,4 @@
-query VoiceStory($id: ID!) {
+query VoiceStory($id: String!) {
   voiceStory(id: $id) {
     id
     status

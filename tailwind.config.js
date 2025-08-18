@@ -31,6 +31,11 @@ module.exports = {
       montserrat: ['Montserrat', 'sans-serif'],
     },
     extend: {
+      fontFamily: {
+        gtDisplay: ['"GT Super Display"', 'serif'],
+        gtAmerica: ['"GT America"', 'Inter', 'ui-sans-serif', 'system-ui'],
+        gtText: ['"GT Super Text"', 'Georgia', 'serif'],
+      },
       minHeight: {
         200: '200px',
         300: '300px',
@@ -38,6 +43,7 @@ module.exports = {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        brand: '#042A21',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
