@@ -14,6 +14,18 @@
   .font-gtAmerica {
     letter-spacing: 0.1em; /* eyebrow caps like HOW IT WORKS */
   }
+  .text-body {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .text-label {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .text-num {
+    font-size: 26px;
+    line-height: 36px;
+  }
   :root {
     --background: 233 22% 18%; /* #23243a */
     --foreground: 0 0% 100%; /* #fff */
@@ -50,7 +62,7 @@
   h4,
   h5,
   h6 {
-    @apply font-display text-white;
+    @apply font-display;
   }
 
   * {
@@ -164,5 +176,17 @@
   /* Ensure table rows have consistent hover behavior */
   tr:hover {
     background-color: #f3f4f6;
+  }
+}
+
+@layer components {
+  .list-root {
+    @apply divide-y divide-slate-200 w-full md:max-w-[705px] [&&>li]:flex [&&>li]:items-baseline [&&>li]:gap-7 [&&>li]:py-5;
+  }
+  .list-num {
+    @apply font-gtText font-book text-num tracking-[-0.01em] text-black w-[30px] relative top-[1px];
+  }
+  .list-text {
+    @apply font-gtText font-book text-body text-brand;
   }
 }

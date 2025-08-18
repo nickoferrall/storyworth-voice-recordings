@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-// import { useStartVoiceStoryMutation } from '../src/generated/graphql'
+import { useStartVoiceStoryMutation } from '../src/generated/graphql'
+import ErrorMessage from '../components/Layout/ErrorMessage'
 
 export default function HomePage() {
   const [phone, setPhone] = useState('')
-  const [start, { data, loading, error }] = [{}, {}]
+  const [start, { data, loading, error }] = useStartVoiceStoryMutation()
   const [submitted, setSubmitted] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -18,7 +19,7 @@ export default function HomePage() {
       <Head>
         <title>Record your story by phone</title>
       </Head>
-      <div className="mx-auto max-w-3xl pt-10 pb-8">
+      <div className="mx-auto min-h-screen max-w-3xl pt-10">
         <div className="flex flex-col items-center">
           <Image
             src="/assets/storyworth-img.png"
@@ -35,7 +36,7 @@ export default function HomePage() {
             Record your voice over the phone and we’ll transcribe your story.
           </h1>
 
-          <label className="block text-[#12473A] mt-8 mb-2 font-gtText font-[350] text-[16px] leading-[20px]">
+          <label className="block text-brandSecondary mt-8 mb-2 font-gtText font-book text-label">
             Your phone number
           </label>
           <input
@@ -44,7 +45,13 @@ export default function HomePage() {
             }`}
             placeholder="123-456-7890"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => {
+              setPhone(e.target.value)
+              if (e.target.value) setSubmitted(false)
+            }}
+            onBlur={() => {
+              if (!phone) setSubmitted(false)
+            }}
             aria-invalid={submitted && !phone ? 'true' : 'false'}
             autoFocus
             ref={inputRef}
@@ -60,8 +67,8 @@ export default function HomePage() {
           >
             {loading ? 'Calling…' : 'Call me now'}
           </button>
-          <hr className="my-10 border-t border-slate-200" />
-          {error && <p className="text-red-600 mt-3">{error.message}</p>}
+          <hr className="my-10 mx-3 border-t border-slate-200" />
+          <ErrorMessage error={(error as any)?.message} className="w-full md:w-1/2" />
           {data && (
             <p className="text-gray-700 mt-4">
               Started. Keep this tab open while we connect your call.
@@ -73,26 +80,26 @@ export default function HomePage() {
           </h2>
           <ol className="divide-y divide-slate-200 w-full">
             <li className="flex gap-6 items-baseline py-5">
-              <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
+              <span className="font-gtText oldstyle-nums proportional-nums text-[26px] leading-[36px] tracking-[-0.01em] font-book text-[#000000] w-[30px] relative top-[1px]">
                 01
               </span>
-              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21]">
+              <p className="font-gtText font-book text-body text-brand">
                 Enter your phone number and Storyworth will call you to record your story.
               </p>
             </li>
             <li className="flex gap-7 items-baseline py-5">
-              <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
+              <span className="font-gtText oldstyle-nums proportional-nums text-[26px] leading-[36px] tracking-[-0.01em] font-book text-[#000000] w-[30px] relative top-[1px]">
                 02
               </span>
-              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21]">
+              <p className="font-gtText font-book text-body text-brand">
                 During the call we’ll record your story over the phone.
               </p>
             </li>
             <li className="flex gap-7 items-baseline py-5">
-              <span className="font-gtDisplay text-[28px] leading-[36px] font-normal text-[#000000] w-[30px]">
+              <span className="font-gtText oldstyle-nums proportional-nums text-[26px] leading-[36px] tracking-[-0.01em] font-book text-[#000000] w-[30px] relative top-[1px]">
                 03
               </span>
-              <p className="font-gtText font-[350] text-[20px] leading-[28px] text-[#042A21]">
+              <p className="font-gtText font-book text-body text-brand">
                 After the call, an audio clip of your recording will be uploaded to your
                 story where you can then request it to be transcribed.
               </p>

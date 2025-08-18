@@ -36,6 +36,9 @@ module.exports = {
         gtAmerica: ['"GT America"', 'Inter', 'ui-sans-serif', 'system-ui'],
         gtText: ['"GT Super Text"', 'Georgia', 'serif'],
       },
+      fontWeight: {
+        book: '350',
+      },
       minHeight: {
         200: '200px',
         300: '300px',
@@ -44,6 +47,7 @@ module.exports = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         brand: '#042A21',
+        brandSecondary: '#12473A',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -82,6 +86,12 @@ module.exports = {
           4: 'hsl(var(--chart-4))',
           5: 'hsl(var(--chart-5))',
         },
+      },
+      fontSize: {
+        body: ['20px', { lineHeight: '28px' }],
+        label: ['16px', { lineHeight: '20px' }],
+        num: ['26px', { lineHeight: '36px' }],
+        h1: ['36px', { lineHeight: '44px' }],
       },
       backgroundImage: {
         'purple-gradient': 'linear-gradient(to bottom right, #EDE7F6, #FFFFFF)',
