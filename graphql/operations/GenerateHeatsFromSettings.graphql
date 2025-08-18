@@ -1,5 +1,0 @@
-mutation GenerateHeatsFromSettings($competitionId: String!, $input: GenerateHeatsInput!) {
-  generateHeatsFromSettings(competitionId: $competitionId, input: $input) {
-    id
-  }
-}

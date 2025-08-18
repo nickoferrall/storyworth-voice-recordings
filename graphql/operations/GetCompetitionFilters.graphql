@@ -1,7 +1,0 @@
-query GetCompetitionFilters {
-  getCompetitionFilters {
-    countries
-    cities
-    teamSizes
-  }
-}

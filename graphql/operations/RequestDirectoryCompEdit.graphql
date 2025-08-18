@@ -1,3 +1,0 @@
-mutation RequestDirectoryCompEdit($input: RequestDirectoryCompEditInput!) {
-  requestDirectoryCompEdit(input: $input)
-}

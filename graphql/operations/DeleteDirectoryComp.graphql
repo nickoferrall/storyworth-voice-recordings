@@ -1,3 +1,0 @@
-mutation DeleteDirectoryComp($id: String!) {
-  deleteDirectoryComp(id: $id)
-}

@@ -1,3 +1,0 @@
-mutation CreatePaymentLink($input: CreatePaymentLinkInput!) {
-  createPaymentLink(input: $input)
-}

@@ -1,3 +1,0 @@
-mutation DeleteTeam($teamId: ID!, $competitionId: ID!) {
-  deleteTeam(teamId: $teamId, competitionId: $competitionId)
-}

@@ -1,3 +1,0 @@
-mutation UnassignAllEntries($competitionId: String!) {
-  unassignAllEntries(competitionId: $competitionId)
-}

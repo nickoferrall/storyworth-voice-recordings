@@ -1,3 +1,0 @@
-mutation SendInvitations($emails: [String!]!, $competitionId: String!) {
-  sendInvitations(emails: $emails, competitionId: $competitionId)
-}

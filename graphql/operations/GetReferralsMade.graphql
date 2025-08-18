@@ -1,8 +1,0 @@
-query GetUserWithReferrals {
-  getUser {
-    id
-    firstName
-    lastName
-    email
-  }
-}

@@ -1,8 +1,0 @@
-query GetWorkoutById($id: String!) {
-  getWorkoutById(id: $id) {
-    id
-    unitOfMeasurement
-    scoreType
-    isVisible
-  }
-}

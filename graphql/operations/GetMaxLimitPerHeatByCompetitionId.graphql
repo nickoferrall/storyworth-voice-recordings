@@ -1,5 +1,0 @@
-query GetMaxLimitPerHeat($competitionId: String!) {
-  getScoreSettingByCompetitionId(competitionId: $competitionId) {
-    maxLimitPerHeat
-  }
-}

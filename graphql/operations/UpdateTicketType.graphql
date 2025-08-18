@@ -1,6 +1,0 @@
-mutation UpdateTicketType($input: UpdateTicketTypeInput!) {
-  updateTicketType(input: $input) {
-    id
-    name
-  }
-}

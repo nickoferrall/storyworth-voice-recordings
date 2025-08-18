@@ -1,7 +1,0 @@
-query GetTicketTypesIdAndNameByCompetitionId($competitionId: String!) {
-  getTicketTypesByCompetitionId(competitionId: $competitionId) {
-    id
-    name
-    isVolunteer
-  }
-}

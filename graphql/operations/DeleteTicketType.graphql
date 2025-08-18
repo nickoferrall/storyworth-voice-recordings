@@ -1,7 +1,0 @@
-mutation DeleteTicketType($id: String!) {
-  deleteTicketType(id: $id) {
-    id
-    name
-    competitionId
-  }
-}

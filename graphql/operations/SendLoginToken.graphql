@@ -1,3 +1,0 @@
-mutation SendLoginToken($input: SendLoginTokenInput!) {
-  sendLoginToken(input: $input)
-}

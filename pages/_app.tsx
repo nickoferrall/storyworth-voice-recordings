@@ -1,59 +1,14 @@
 import React from 'react'
 import '../styles/tailwind.css'
-import DefaultLayout from '../components/Layout'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../lib/apollo'
-import ErrorBoundary from '../lib/ErrorBoundary'
-import { UserProvider } from '../contexts/UserContext'
 import { AppProps } from 'next/app'
-import { NextComponentType, NextPageContext } from 'next'
-import { CompetitionProvider } from '../contexts/CompetitionContext'
 import Head from 'next/head'
-import Script from 'next/script'
-import posthog from 'posthog-js'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
 
-interface MyAppProps extends AppProps {
-  Component: NextComponentType<NextPageContext, any, any> & {
-    layout?: React.ComponentType
-  }
-  pageProps: {
-    initialApolloState?: any
-    user?: any
-  }
-}
+interface MyAppProps extends AppProps {}
 
 function MyApp({ Component, pageProps }: MyAppProps) {
-  const Layout = Component.layout || DefaultLayout
-  const router = useRouter()
-
-  useEffect(() => {
-    // Initialize PostHog
-    if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
-      posthog.init('phc_Fr9AtEgSPZ2Bj5P8nCW2lF1QzZjryHAl7mQwYuNILa7', {
-        api_host: 'https://eu.i.posthog.com',
-        capture_pageview: false, // We'll handle this manually
-        autocapture: true,
-      })
-    }
-
-    // Track page views
-    const handleRouteChange = () => {
-      if (process.env.NODE_ENV === 'production') {
-        posthog.capture('$pageview')
-      }
-    }
-
-    router.events.on('routeChangeComplete', handleRouteChange)
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
-
-  // Only apply global CSS for non-homepage routes
-  const isHomePage = router.pathname === '/'
+  const isHomePage = true
 
   return (
     <>
@@ -173,32 +128,8 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         )}
       </Head>
 
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-32WFWB1LKN"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-32WFWB1LKN');
-        `}
-      </Script>
-
       <ApolloProvider client={useApollo(pageProps.initialApolloState)}>
-        {/* <Layout user={pageProps.user}> */}
-        <UserProvider>
-          <Layout>
-            {/* <UserProvider initialUser={pageProps.user}> */}
-            <ErrorBoundary>
-              <CompetitionProvider>
-                <Component {...pageProps} />
-              </CompetitionProvider>
-            </ErrorBoundary>
-          </Layout>
-        </UserProvider>
+        <Component {...pageProps} />
       </ApolloProvider>
     </>
   )

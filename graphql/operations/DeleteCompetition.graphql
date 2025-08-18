@@ -1,3 +1,0 @@
-mutation DeleteCompetition($id: String!) {
-  deleteCompetition(id: $id)
-}

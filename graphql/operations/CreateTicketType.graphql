@@ -1,6 +1,0 @@
-mutation CreateTicketType($input: TicketTypeInput!) {
-  createTicketType(input: $input) {
-    id
-    name
-  }
-}

@@ -1,7 +1,0 @@
-mutation SubmitFeedback($text: String!) {
-  submitFeedback(text: $text) {
-    id
-    text
-    createdAt
-  }
-}

@@ -1,235 +1,65 @@
-import React, { useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import { Hero } from '../components/Homepage/Hero'
-import { Header } from '../components/Homepage/Header'
+import React, { useState } from 'react'
 import Head from 'next/head'
-import Meta from '../components/Layout/meta'
+import { gql, useMutation } from '@apollo/client'
 
-const PrimaryFeatures = dynamic(
-  () => import('../components/Homepage/PrimaryFeatures'),
-) as React.ComponentType
-const SecondaryFeatures = dynamic(
-  () => import('../components/Homepage/SecondaryFeatures'),
-  { ssr: false },
-) as React.ComponentType
-const CallToAction = dynamic(() => import('../components/Homepage/CallToAction'), {
-  ssr: false,
-}) as React.ComponentType
-const Testimonials = dynamic(() => import('../components/Homepage/Testimonials'), {
-  ssr: false,
-}) as React.ComponentType
-const Pricing = dynamic(() => import('../components/Homepage/Pricing'), {
-  ssr: false,
-}) as React.ComponentType
-const Faqs = dynamic(() => import('../components/Homepage/Faqs'), {
-  ssr: false,
-}) as React.ComponentType
-const Footer = dynamic(() => import('../components/Homepage/Footer'), {
-  ssr: false,
-}) as React.ComponentType
+const START_VOICE_STORY = gql`
+  mutation StartVoiceStory($phone: String!) {
+    startVoiceStory(phone: $phone) {
+      id
+      status
+    }
+  }
+`
 
 export default function HomePage() {
-  useEffect(() => {
-    document.body.setAttribute('data-page', 'homepage')
-    return () => {
-      document.body.removeAttribute('data-page')
-    }
-  }, [])
+  const [phone, setPhone] = useState('')
+  const [start, { data, loading, error }] = useMutation(START_VOICE_STORY)
 
   return (
-    <>
-      <Meta
-        title="Fitlo – HYROX Simulation, CrossFit, & Functional Fitness Competition Software"
-        description="Organize HYROX simulations, CrossFit, and functional fitness competitions. Manage tickets, heats, leaderboards, emails, and payments in one place."
-        canonical="https://fitlo.co/"
-      />
+    <div className="min-h-screen bg-white flex items-center justify-center p-8">
       <Head>
-        <style>{`
-          /* Force homepage to use light theme */
-          body[data-page="homepage"] {
-            background-color: white !important;
-            color: #111827 !important;
-          }
-
-          /* Override all text colors on homepage */
-          body[data-page="homepage"] * {
-            color: inherit !important;
-          }
-
-          /* Specific text color overrides for homepage */
-          body[data-page="homepage"] .text-slate-900 {
-            color: #0f172a !important;
-          }
-
-          body[data-page="homepage"] .text-slate-700 {
-            color: #334155 !important;
-          }
-
-          body[data-page="homepage"] .text-slate-600 {
-            color: #475569 !important;
-          }
-
-          body[data-page="homepage"] .text-slate-500 {
-            color: #64748b !important;
-          }
-
-          body[data-page="homepage"] .text-slate-400 {
-            color: #94a3b8 !important;
-          }
-
-          body[data-page="homepage"] .text-slate-300 {
-            color: #cbd5e1 !important;
-          }
-
-          body[data-page="homepage"] .text-slate-200 {
-            color: #e2e8f0 !important;
-          }
-
-          body[data-page="homepage"] .text-slate-100 {
-            color: #f1f5f9 !important;
-          }
-
-          body[data-page="homepage"] .text-slate-50 {
-            color: #f8fafc !important;
-          }
-
-          body[data-page="homepage"] .text-white {
-            color: white !important;
-          }
-
-          body[data-page="homepage"] .text-blue-600 {
-            color: #2563eb !important;
-          }
-
-          body[data-page="homepage"] .text-blue-100 {
-            color: #dbeafe !important;
-          }
-
-          body[data-page="homepage"] .text-blue-300 {
-            color: #93c5fd !important;
-          }
-
-          /* Background color overrides */
-          body[data-page="homepage"] .bg-white {
-            background-color: white !important;
-          }
-
-          body[data-page="homepage"] .bg-slate-50 {
-            background-color: #f8fafc !important;
-          }
-
-          body[data-page="homepage"] .bg-slate-900 {
-            background-color: #0f172a !important;
-          }
-
-          body[data-page="homepage"] .bg-blue-600 {
-            background-color: #2563eb !important;
-          }
-
-          /* Button hover states */
-          body[data-page="homepage"] .hover\\:text-slate-900:hover {
-            color: #0f172a !important;
-          }
-
-          body[data-page="homepage"] .hover\\:text-slate-700:hover {
-            color: #334155 !important;
-          }
-
-          body[data-page="homepage"] .hover\\:bg-slate-100:hover {
-            background-color: #f1f5f9 !important;
-          }
-
-          body[data-page="homepage"] .hover\\:bg-slate-700:hover {
-            background-color: #334155 !important;
-          }
-
-          body[data-page="homepage"] .hover\\:bg-blue-500:hover {
-            background-color: #3b82f6 !important;
-          }
-
-          /* Ring colors */
-          body[data-page="homepage"] .ring-slate-200 {
-            --tw-ring-color: #e2e8f0 !important;
-          }
-
-          body[data-page="homepage"] .ring-slate-300 {
-            --tw-ring-color: #cbd5e1 !important;
-          }
-
-          body[data-page="homepage"] .hover\\:ring-slate-300:hover {
-            --tw-ring-color: #cbd5e1 !important;
-          }
-
-          /* Border colors */
-          body[data-page="homepage"] .border-slate-200 {
-            border-color: #e2e8f0 !important;
-          }
-
-          body[data-page="homepage"] .border-slate-300 {
-            border-color: #cbd5e1 !important;
-          }
-
-          /* Focus states */
-          body[data-page="homepage"] .focus-visible\\:outline-slate-900:focus-visible {
-            outline-color: #0f172a !important;
-          }
-
-          body[data-page="homepage"] .focus-visible\\:outline-blue-600:focus-visible {
-            outline-color: #2563eb !important;
-          }
-
-          /* Active states */
-          body[data-page="homepage"] .active\\:bg-slate-800:active {
-            background-color: #1e293b !important;
-          }
-
-          body[data-page="homepage"] .active\\:bg-blue-800:active {
-            background-color: #1d4ed8 !important;
-          }
-
-          body[data-page="homepage"] .active\\:text-slate-300:active {
-            color: #cbd5e1 !important;
-          }
-
-          body[data-page="homepage"] .active\\:text-blue-100:active {
-            color: #dbeafe !important;
-          }
-
-          /* Footer specific overrides */
-          body[data-page="homepage"] footer {
-            background-color: white !important;
-            color: #111827 !important;
-          }
-
-          body[data-page="homepage"] footer * {
-            color: inherit !important;
-          }
-
-          body[data-page="homepage"] footer .text-slate-500 {
-            color: #64748b !important;
-          }
-
-          body[data-page="homepage"] footer .border-slate-200 {
-            border-color: #e2e8f0 !important;
-          }
-
-          /* Import the homepage-specific Tailwind CSS */
-          @import url('../styles/home-tailwind.css');
-        `}</style>
+        <title>Record your story by phone</title>
       </Head>
-      <div data-page="homepage">
-        <Header />
-        <main>
-          <Hero />
-          <PrimaryFeatures />
-          <SecondaryFeatures />
-          <CallToAction />
-          <Testimonials />
-          <Pricing />
-          <Faqs />
-        </main>
-        <Footer />
+      <div className="w-full max-w-2xl">
+        <h1 className="text-4xl font-semibold text-gray-800 mb-6">
+          Record your voice over the phone and we’ll transcribe your story.
+        </h1>
+        <label className="block text-gray-700 mb-2">Your phone number</label>
+        <input
+          className="w-full border border-gray-300 rounded-lg p-3 text-lg"
+          placeholder="123-456-7890"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        <button
+          className="mt-4 bg-teal-600 text-white px-6 py-3 rounded-full shadow disabled:opacity-50"
+          onClick={() => start({ variables: { phone } })}
+          disabled={!phone || loading}
+        >
+          {loading ? 'Calling…' : 'Call me now'}
+        </button>
+        {error && <p className="text-red-600 mt-3">{error.message}</p>}
+        {data && (
+          <p className="text-gray-700 mt-4">Started. Keep this tab open while we connect your call.</p>
+        )}
+
+        <hr className="my-10" />
+        <h2 className="text-sm font-semibold tracking-widest text-gray-600">HOW IT WORKS</h2>
+        <ol className="mt-4 space-y-6">
+          <li className="flex gap-4">
+            <span className="text-xl text-gray-500">01</span>
+            <p className="text-gray-800">Enter your phone number and we’ll call you to record your story.</p>
+          </li>
+          <li className="flex gap-4">
+            <span className="text-xl text-gray-500">02</span>
+            <p className="text-gray-800">During the call we’ll record your story over the phone.</p>
+          </li>
+          <li className="flex gap-4">
+            <span className="text-xl text-gray-500">03</span>
+            <p className="text-gray-800">After the call, you’ll be able to listen back and read the transcript.</p>
+          </li>
+        </ol>
       </div>
-    </>
+    </div>
   )
 }

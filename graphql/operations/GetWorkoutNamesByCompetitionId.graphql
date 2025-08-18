@@ -1,8 +1,0 @@
-query GetWorkoutNamesByCompetitionId($competitionId: String!) {
-  getWorkoutsByCompetitionId(competitionId: $competitionId) {
-    id
-    name
-    unitOfMeasurement
-    scoreType
-  }
-}

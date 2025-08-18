@@ -1,11 +1,10 @@
-import { connectionPlugin, extendType, makeSchema, objectType } from 'nexus'
+import { connectionPlugin, makeSchema } from 'nexus'
 import { join } from 'path'
 
 import * as types from './types'
-import { DuplicateTicketType } from './mutations/duplicateTicketType'
 
 export const schema = makeSchema({
-  types: [...Object.values(types), DuplicateTicketType],
+  types: [...Object.values(types)],
   plugins: [connectionPlugin()],
   outputs: {
     typegen: join(process.cwd(), 'src', 'generated', 'nexus-typegen.ts'),

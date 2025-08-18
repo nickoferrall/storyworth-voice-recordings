@@ -1,7 +1,0 @@
-mutation UpdateInvitation($id: String!, $email: String!) {
-  updateInvitation(id: $id, email: $email) {
-    id
-    email
-    updatedAt
-  }
-}

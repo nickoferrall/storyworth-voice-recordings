@@ -1,6 +1,0 @@
-mutation CreateVolunteerTicketType($competitionId: String!) {
-  createVolunteerTicketType(competitionId: $competitionId) {
-    id
-    name
-  }
-}

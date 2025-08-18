@@ -1,0 +1,8 @@
+query VoiceStory($id: ID!) {
+  voiceStory(id: $id) {
+    id
+    status
+    audioUrl
+    transcript
+  }
+}

@@ -1,7 +1,0 @@
-mutation UpdateHeatLimits($input: [UpdateHeatLimitsInput!]!) {
-  updateHeatLimits(input: $input) {
-    id
-    maxLimitPerHeat
-    name
-  }
-}

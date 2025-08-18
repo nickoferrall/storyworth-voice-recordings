@@ -1,0 +1,6 @@
+mutation StartVoiceStory($phone: String!) {
+  startVoiceStory(phone: $phone) {
+    id
+    status
+  }
+}

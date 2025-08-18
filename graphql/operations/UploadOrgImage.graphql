@@ -1,6 +1,0 @@
-mutation UploadOrgImage($orgId: String!, $image: String!) {
-  uploadOrgImage(orgId: $orgId, image: $image) {
-    id
-    name
-  }
-}

@@ -1,9 +1,0 @@
-mutation CreateBulkRegistrations($input: [BulkRegistrationInput!]!) {
-  createBulkRegistrations(input: $input) {
-    id
-    email
-    firstName
-    lastName
-    # athleteCompetitionIds
-  }
-}

@@ -1,3 +1,0 @@
-mutation DeleteVolunteerTicket($competitionId: String!) {
-  deleteVolunteerTicket(competitionId: $competitionId)
-}

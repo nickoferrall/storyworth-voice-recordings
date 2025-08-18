@@ -1,9 +1,0 @@
-mutation CloneCompetition($id: String!) {
-  cloneCompetition(id: $id) {
-    id
-    name
-    startDateTime
-    endDateTime
-    registrationsCount
-  }
-}
