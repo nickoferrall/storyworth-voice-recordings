@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ChevronLeft } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { useRetellVoiceStoryQuery } from '../../src/generated/graphql'
 
 export default function CallPage() {
@@ -54,15 +56,27 @@ export default function CallPage() {
       <Head>
         <title>Call Summary</title>
       </Head>
-      <div className="mx-auto max-w-3xl px-6 py-14 ">
-        <button
-          className="mb-6 inline-flex items-center justify-center px-5 h-10 bg-[#06949d] hover:brightness-95 text-white rounded-full shadow uppercase tracking-[0.1em] font-gtAmerica"
-          onClick={() => router.push('/')}
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" color="white" aria-hidden />
-          Back
-        </button>
-        <h1 className="font-gtDisplay text-brand text-[32px] leading-[40px]">
+      <div className="mx-auto max-w-3xl px-6 pt-16 pb-14 ">
+        <div className="flex flex-col items-center">
+          <Image
+            src="/assets/storyworth-img.png"
+            alt=""
+            width={167}
+            height={117}
+            className="mb-8"
+            aria-hidden
+            priority
+          />
+        </div>
+        <div className="mb-6 flex items-center text-sm text-slate-600">
+          <ChevronLeft className="h-4 w-4 mr-1" aria-hidden />
+          <Link href="/calls" className="text-blue-600 hover:underline">
+            Calls
+          </Link>
+          <span className="mx-2 text-slate-400">/</span>
+          <span>Call summary</span>
+        </div>
+        <h1 className="font-gtDisplay text-brand text-[36px] leading-[44px] font-normal">
           Call Summary
         </h1>
         {loading && <p className="text-slate-500 mt-4">Loading…</p>}

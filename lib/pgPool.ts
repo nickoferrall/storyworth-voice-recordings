@@ -23,21 +23,31 @@ try {
   dotenv.config()
 }
 
-const config = {
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || '5432'),
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  max: parseInt(process.env.DB_MAX_CLIENTS || '50'),
-  password: process.env.DB_PASSWORD,
-  // Only use SSL for production environments
-  ssl:
-    process.env.NODE_ENV === 'production'
-      ? {
-          rejectUnauthorized: false,
-        }
-      : false,
-}
+const usesConnString = !!process.env.DATABASE_URL
+const config: any = usesConnString
+  ? {
+      connectionString: process.env.DATABASE_URL,
+      max: parseInt(process.env.DB_MAX_CLIENTS || '50'),
+      ssl:
+        process.env.NODE_ENV === 'production' ||
+        /supabase\.co/.test(process.env.DATABASE_URL || '')
+          ? { rejectUnauthorized: false }
+          : false,
+    }
+  : {
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT || '5432'),
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      max: parseInt(process.env.DB_MAX_CLIENTS || '50'),
+      password: process.env.DB_PASSWORD,
+      ssl:
+        process.env.NODE_ENV === 'production'
+          ? {
+              rejectUnauthorized: false,
+            }
+          : false,
+    }
 
 let pool: Pool | undefined
 

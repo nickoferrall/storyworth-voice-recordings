@@ -1,0 +1,10 @@
+query RetellCalls {
+  retellCalls {
+    id
+    audioUrl
+    transcript
+    phoneE164
+    createdAt
+    updatedAt
+  }
+}

@@ -81,6 +81,7 @@ export interface NexusGenFieldTypes {
     startVoiceStory: NexusGenRootTypes['VoiceStory']; // VoiceStory!
   }
   Query: { // field return type
+    retellCalls: Array<NexusGenRootTypes['VoiceStory'] | null> | null; // [VoiceStory]
     retellVoiceStory: NexusGenRootTypes['VoiceStory'] | null; // VoiceStory
     voiceStory: NexusGenRootTypes['VoiceStory'] | null; // VoiceStory
   }
@@ -100,6 +101,7 @@ export interface NexusGenFieldTypeNames {
     startVoiceStory: 'VoiceStory'
   }
   Query: { // field return type name
+    retellCalls: 'VoiceStory'
     retellVoiceStory: 'VoiceStory'
     voiceStory: 'VoiceStory'
   }

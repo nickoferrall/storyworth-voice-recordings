@@ -10,7 +10,7 @@
     "setup:local": "node scripts/setup-local-dev.js",
     "env:info": "node scripts/env-info.js",
     "pg:build": "pgtyped -c ./pgtypedConfig.js",
-    "pg:build:watch": "npx pgtyped -w -c pgtypedConfig.json",
+    "pg:build:watch": "npx pgtyped -w -c pgtypedConfig.js",
     "build": "next build && next-sitemap --config next-sitemap.config.js",
     "build:ignore-types": "tsc --skipLibCheck --noEmit && next build && next-sitemap",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",

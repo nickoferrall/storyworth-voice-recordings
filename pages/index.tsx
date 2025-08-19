@@ -165,7 +165,7 @@ export default function HomePage() {
       <Head>
         <title>Record your story by phone</title>
       </Head>
-      <div className="mx-auto min-h-screen max-w-3xl pt-10">
+      <div className="mx-auto min-h-screen max-w-3xl pt-10 pb-20">
         <div className="flex flex-col items-center">
           <Image
             src="/assets/storyworth-img.png"

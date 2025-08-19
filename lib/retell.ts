@@ -68,3 +68,24 @@ export async function getRetellCall(callId: string) {
     }
   }
 }
+
+export async function listRetellCalls() {
+  if (!RETELL_API_KEY) throw new Error('Missing RETELL_API_KEY')
+  const client = new Retell({ apiKey: RETELL_API_KEY })
+  try {
+    const resp = await (client as any).call.list()
+    return resp
+  } catch (e: any) {
+    const headers = {
+      Authorization: `Bearer ${RETELL_API_KEY}`,
+      'Content-Type': 'application/json',
+    }
+    const res = await fetch('https://api.retellai.com/v2/calls', {
+      method: 'GET',
+      headers,
+    })
+    if (res.ok) return res.json()
+    const text = await res.text()
+    throw new Error(`Retell list-calls error (${res.status}): ${text}`)
+  }
+}
