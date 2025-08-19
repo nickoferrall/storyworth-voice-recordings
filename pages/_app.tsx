@@ -14,8 +14,8 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="The home of functional fitness competitions" />
-        <title>fitlo</title>
+        <meta name="description" content="Record your story by phone with Storyworth" />
+        <title>Storyworth</title>
         {!isHomePage && (
           <style>{`
             /* Apply global dark theme only for non-homepage routes */

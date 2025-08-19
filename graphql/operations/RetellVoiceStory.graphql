@@ -1,0 +1,8 @@
+query RetellVoiceStory($id: String!) {
+  retellVoiceStory(id: $id) {
+    id
+    status
+    audioUrl
+    transcript
+  }
+}

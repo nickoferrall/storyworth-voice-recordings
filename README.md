@@ -1,6 +1,6 @@
-# Fitlo
+# Storyworth Voice Recording
 
-Fitlo is software that helps gyms organize fitness competitions like HYROX Simulations and CrossFit.
+Record your story over the phone and view the recording and transcript.
 
 ## E2E Testing with Supabase Branching
 

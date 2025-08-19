@@ -1,10 +1,10 @@
 import Head from 'next/head'
 
-const DOMAIN = 'https://fitlo.co'
+const DOMAIN = 'https://storyworth.com'
 
 export default function Meta({
-  title = 'Fitlo - Functional Fitness Competition Management',
-  description = 'Fitlo helps you manage and organize functional fitness competitions, HYROX events, and CrossFit competitions with ease.',
+  title = 'Storyworth - Phone recording and transcription',
+  description = 'Record your voice by phone and get a transcript with Storyworth.',
   image = `${DOMAIN}/api/og`,
   canonical = DOMAIN,
 }: {
@@ -31,7 +31,7 @@ export default function Meta({
       <meta property="og:type" content="website" />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@fitlo" />
+      <meta name="twitter:site" content="@storyworth" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />

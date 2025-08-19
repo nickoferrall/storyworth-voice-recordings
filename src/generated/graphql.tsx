@@ -31,7 +31,13 @@ export type MutationStartVoiceStoryArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  retellVoiceStory?: Maybe<VoiceStory>;
   voiceStory?: Maybe<VoiceStory>;
+};
+
+
+export type QueryRetellVoiceStoryArgs = {
+  id: Scalars['String']['input'];
 };
 
 
@@ -50,6 +56,13 @@ export type VoiceStory = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
+export type RetellVoiceStoryQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type RetellVoiceStoryQuery = { __typename?: 'Query', retellVoiceStory?: { __typename?: 'VoiceStory', id: string, status?: string | null, audioUrl?: string | null, transcript?: string | null } | null };
+
 export type StartVoiceStoryMutationVariables = Exact<{
   phone: Scalars['String']['input'];
 }>;
@@ -65,6 +78,44 @@ export type VoiceStoryQueryVariables = Exact<{
 export type VoiceStoryQuery = { __typename?: 'Query', voiceStory?: { __typename?: 'VoiceStory', id: string, status?: string | null, audioUrl?: string | null, transcript?: string | null } | null };
 
 
+export const RetellVoiceStoryDocument = gql`
+    query RetellVoiceStory($id: String!) {
+  retellVoiceStory(id: $id) {
+    id
+    status
+    audioUrl
+    transcript
+  }
+}
+    `;
+
+/**
+ * __useRetellVoiceStoryQuery__
+ *
+ * To run a query within a React component, call `useRetellVoiceStoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRetellVoiceStoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRetellVoiceStoryQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useRetellVoiceStoryQuery(baseOptions: Apollo.QueryHookOptions<RetellVoiceStoryQuery, RetellVoiceStoryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RetellVoiceStoryQuery, RetellVoiceStoryQueryVariables>(RetellVoiceStoryDocument, options);
+      }
+export function useRetellVoiceStoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RetellVoiceStoryQuery, RetellVoiceStoryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RetellVoiceStoryQuery, RetellVoiceStoryQueryVariables>(RetellVoiceStoryDocument, options);
+        }
+export type RetellVoiceStoryQueryHookResult = ReturnType<typeof useRetellVoiceStoryQuery>;
+export type RetellVoiceStoryLazyQueryHookResult = ReturnType<typeof useRetellVoiceStoryLazyQuery>;
+export type RetellVoiceStoryQueryResult = Apollo.QueryResult<RetellVoiceStoryQuery, RetellVoiceStoryQueryVariables>;
 export const StartVoiceStoryDocument = gql`
     mutation StartVoiceStory($phone: String!) {
   startVoiceStory(phone: $phone) {

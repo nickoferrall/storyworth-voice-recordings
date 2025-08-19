@@ -38,6 +38,7 @@ export const VoiceStoryQuery = extendType({
         }
       },
     })
+    // retellVoiceStory moved to queries/retellVoiceStory
   },
 })
 

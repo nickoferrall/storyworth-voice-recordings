@@ -10,6 +10,7 @@ type Mutation {
 }
 
 type Query {
+  retellVoiceStory(id: String!): VoiceStory
   voiceStory(id: String!): VoiceStory
 }
 

@@ -81,6 +81,7 @@ export interface NexusGenFieldTypes {
     startVoiceStory: NexusGenRootTypes['VoiceStory']; // VoiceStory!
   }
   Query: { // field return type
+    retellVoiceStory: NexusGenRootTypes['VoiceStory'] | null; // VoiceStory
     voiceStory: NexusGenRootTypes['VoiceStory'] | null; // VoiceStory
   }
   VoiceStory: { // field return type
@@ -99,6 +100,7 @@ export interface NexusGenFieldTypeNames {
     startVoiceStory: 'VoiceStory'
   }
   Query: { // field return type name
+    retellVoiceStory: 'VoiceStory'
     voiceStory: 'VoiceStory'
   }
   VoiceStory: { // field return type name
@@ -119,6 +121,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    retellVoiceStory: { // args
+      id: string; // String!
+    }
     voiceStory: { // args
       id: string; // String!
     }

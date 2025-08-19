@@ -1,6 +1,6 @@
 {
-  "name": "fitlo",
-  "description": "fitlo is the ultimate way to manage functional fitness competitions",
+  "name": "storyworth-voice-recordings",
+  "description": "Storyworth phone call recording and transcription demo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -135,6 +135,7 @@
     "react-select": "^5.7.4",
     "recharts": "^2.15.4",
     "remark-gfm": "^4.0.0",
+    "retell-sdk": "^4.43.0",
     "shadcn-ui": "^0.9.0",
     "sharp": "^0.33.5",
     "short-uuid": "^4.2.2",

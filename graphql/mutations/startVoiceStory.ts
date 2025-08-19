@@ -1,5 +1,9 @@
 import { extendType, nonNull, stringArg } from 'nexus'
-import { supabaseAdmin } from '../../lib/supabaseAdmin'
+import {
+  startRetellOutboundCall,
+  RETELL_AGENT_ID,
+  RETELL_FROM_NUMBER,
+} from '../../lib/retell'
 
 export const StartVoiceStoryMutation = extendType({
   type: 'Mutation',
@@ -8,20 +12,33 @@ export const StartVoiceStoryMutation = extendType({
       type: 'VoiceStory',
       args: { phone: nonNull(stringArg()) },
       resolve: async (_src, { phone }) => {
-        const { data, error } = await (supabaseAdmin as any)
-          .from('voice_story')
-          .insert({ phone_e164: phone, status: 'created' })
-          .select('*')
-          .single()
-        if (error) throw new Error(error.message)
+        if (!RETELL_AGENT_ID) {
+          throw new Error('Missing RETELL_AGENT_ID')
+        }
+        let response: any
+        try {
+          response = await startRetellOutboundCall({
+            customerNumber: phone,
+            fromNumber: RETELL_FROM_NUMBER,
+            agentId: RETELL_AGENT_ID,
+          })
+          console.log('🚀 ~ response__:', response)
+        } catch (err: any) {
+          console.error('[retell call error]', err?.message)
+          throw new Error(err?.message || 'Retell call failed')
+        }
+        const retellId = response?.call_id || response?.id
+        if (!retellId) {
+          throw new Error('Missing retell call id')
+        }
         return {
-          id: data.id,
-          phoneE164: data.phone_e164,
-          status: data.status,
-          audioUrl: data.audio_url,
-          transcript: data.transcript,
-          createdAt: data.created_at,
-          updatedAt: data.updated_at,
+          id: String(retellId),
+          phoneE164: phone,
+          status: response?.call_status || response?.status || 'calling',
+          audioUrl: null as any,
+          transcript: null as any,
+          createdAt: null as any,
+          updatedAt: null as any,
         }
       },
     })
