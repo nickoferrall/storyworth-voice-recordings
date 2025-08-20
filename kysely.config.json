@@ -1,9 +1,0 @@
-{
-  "dialect": "postgres",
-  "connectionString": "postgresql://postgres.czbbldmexpsiebwhrxox:+[}nY87ZUPaT^C4@aws-0-eu-west-2.pooler.supabase.com:5432/postgres",
-  "outFile": "./src/generated/database.ts",
-  "typeOverrides": {
-    "timestamptz": "Date",
-    "timestamp": "Date"
-  }
-}

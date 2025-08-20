@@ -53,6 +53,17 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Call: { // root type
+    audioUrl?: string | null; // String
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    endedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id: string; // String!
+    phoneE164?: string | null; // String
+    retellCallId?: string | null; // String
+    startedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    status?: string | null; // String
+    transcript?: string | null; // String
+  }
   Mutation: {};
   Query: {};
   VoiceStory: { // root type
@@ -77,10 +88,22 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Call: { // field return type
+    audioUrl: string | null; // String
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    endedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: string; // String!
+    phoneE164: string | null; // String
+    retellCallId: string | null; // String
+    startedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    status: string | null; // String
+    transcript: string | null; // String
+  }
   Mutation: { // field return type
     startVoiceStory: NexusGenRootTypes['VoiceStory']; // VoiceStory!
   }
   Query: { // field return type
+    calls: Array<NexusGenRootTypes['Call'] | null> | null; // [Call]
     retellCalls: Array<NexusGenRootTypes['VoiceStory'] | null> | null; // [VoiceStory]
     retellVoiceStory: NexusGenRootTypes['VoiceStory'] | null; // VoiceStory
     voiceStory: NexusGenRootTypes['VoiceStory'] | null; // VoiceStory
@@ -97,10 +120,22 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Call: { // field return type name
+    audioUrl: 'String'
+    createdAt: 'DateTime'
+    endedAt: 'DateTime'
+    id: 'String'
+    phoneE164: 'String'
+    retellCallId: 'String'
+    startedAt: 'DateTime'
+    status: 'String'
+    transcript: 'String'
+  }
   Mutation: { // field return type name
     startVoiceStory: 'VoiceStory'
   }
   Query: { // field return type name
+    calls: 'Call'
     retellCalls: 'VoiceStory'
     retellVoiceStory: 'VoiceStory'
     voiceStory: 'VoiceStory'

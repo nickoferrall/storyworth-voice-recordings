@@ -1,4 +1,5 @@
 export * from './DateTime'
 export * from './VoiceStory'
 export * from '../mutations/startVoiceStory'
+export * from './Call'
 export * from '../queries/retellVoiceStory'

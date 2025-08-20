@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import path from 'path'
 
 // Load environment-specific config
-const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.prod'
+const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev'
 const envPath = path.join(process.cwd(), envFile)
 
 // Try to load the environment file, fall back to default .env

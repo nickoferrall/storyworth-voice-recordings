@@ -2,6 +2,18 @@
 ### Do not make changes to this file directly
 
 
+type Call {
+  audioUrl: String
+  createdAt: DateTime
+  endedAt: DateTime
+  id: String!
+  phoneE164: String
+  retellCallId: String
+  startedAt: DateTime
+  status: String
+  transcript: String
+}
+
 """Date and time"""
 scalar DateTime
 
@@ -10,6 +22,7 @@ type Mutation {
 }
 
 type Query {
+  calls: [Call]
   retellCalls: [VoiceStory]
   retellVoiceStory(id: String!): VoiceStory
   voiceStory(id: String!): VoiceStory

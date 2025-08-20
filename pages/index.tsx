@@ -20,6 +20,7 @@ export default function HomePage() {
   const [audioUrl, setAudioUrl] = useState<string | null>(null)
   const [clientError, setClientError] = useState<string | null>(null)
   const router = useRouter()
+  const redirectedRef = useRef(false)
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -72,6 +73,19 @@ export default function HomePage() {
   }, [callId])
 
   useEffect(() => {
+    if (redirectedRef.current) return
+    if (!callId || callId === 'demo') return
+    const endedStatuses = ['completed', 'finished', 'ended', 'agent_hangup', 'user_hangup']
+    if (audioUrl && endedStatuses.includes(String(callStatus || '').toLowerCase())) {
+      try {
+        localStorage.setItem('lastCallId', callId)
+      } catch (_) {}
+      redirectedRef.current = true
+      router.push(`/call/${encodeURIComponent(callId)}`)
+    }
+  }, [audioUrl, callStatus, callId, router])
+
+  useEffect(() => {
     if (!(router as any).isReady) return
     if ((router.query as any)?.demo === '1' && !callId) {
       setCallId('demo')
@@ -115,6 +129,18 @@ export default function HomePage() {
   }, [audioUrl, transcript, callStatus])
 
   const isInProgress = !!(callId && !callEnded)
+  const isFailure = useMemo(() => {
+    const failures = [
+      'failed',
+      'busy',
+      'no_answer',
+      'not_reachable',
+      'canceled',
+      'cancelled',
+      'error',
+    ]
+    return failures.includes(String(callStatus || '').toLowerCase())
+  }, [callStatus])
 
   const triggerCall = () => {
     setSubmitted(true)
@@ -178,7 +204,9 @@ export default function HomePage() {
           />
         </div>
         <div
-          className={`mx-auto w-full md:w-[741px] md:relative md:-mt-5 ${isInProgress ? '' : 'pl-6'}`}
+          className={`mx-auto w-full md:w-[741px] md:relative md:-mt-5 px-6 md:px-0 ${
+            isInProgress ? '' : 'md:pl-6'
+          }`}
         >
           {!isInProgress && (
             <h1 className="font-gtDisplay text-brand text-[36px] leading-[44px] font-normal">
@@ -197,10 +225,23 @@ export default function HomePage() {
                     ? 'border-red-500'
                     : 'border-[#9FB5AF]'
                 }`}
-                placeholder="+15551234567"
+                placeholder="123-456-7890"
+                type="tel"
                 value={phone}
                 onChange={(e) => {
-                  setPhone(e.target.value)
+                  const raw = e.target.value
+                  if (raw.startsWith('+')) {
+                    setPhone(raw)
+                  } else {
+                    const digits = raw.replace(/[^\d]/g, '').slice(0, 10)
+                    let display = digits
+                    if (digits.length > 3 && digits.length <= 6) {
+                      display = `${digits.slice(0, 3)}-${digits.slice(3)}`
+                    } else if (digits.length > 6) {
+                      display = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`
+                    }
+                    setPhone(display)
+                  }
                   if (e.target.value) setSubmitted(false)
                   setClientError(null)
                 }}
@@ -238,7 +279,7 @@ export default function HomePage() {
           )}
           {isInProgress && (
             <div className="mt-6 w-full flex justify-center">
-              {!callEnded ? (
+              {!callEnded && !isFailure ? (
                 <div className="mt-4 rounded-md border border-slate-200 p-4 bg-white max-w-xl w-full">
                   <div className="mt-2 max-h-56 overflow-auto whitespace-pre-wrap font-gtText text-[16px] leading-6 text-brand">
                     {transcript ? (
@@ -253,10 +294,17 @@ export default function HomePage() {
                 </div>
               ) : (
                 <>
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-slate-400" aria-hidden />
-                    <p className="text-gray-700">Call complete</p>
-                  </div>
+                  {isFailure ? (
+                    <div className="mt-4 rounded-md border border-red-200 bg-red-50 p-4 text-red-700 max-w-xl w-full">
+                      Couldn’t connect the call. Please check the number format and try
+                      again.
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-slate-400" aria-hidden />
+                      <p className="text-gray-700">Call complete</p>
+                    </div>
+                  )}
                   {audioUrl && (
                     <div className="mt-6">
                       <h3 className="font-gtAmerica uppercase text-[14px] leading-5 tracking-wide text-slate-700">

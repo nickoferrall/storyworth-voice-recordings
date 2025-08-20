@@ -41,18 +41,3 @@ export const VoiceStoryQuery = extendType({
     // retellVoiceStory moved to queries/retellVoiceStory
   },
 })
-
-export const StartVoiceStory = extendType({
-  type: 'Mutation',
-  definition(t) {
-    t.nonNull.field('startVoiceStory', {
-      type: 'VoiceStory',
-      args: {
-        phone: nonNull(stringArg()),
-      },
-      resolve: async () => {
-        throw new Error('startVoiceStory moved to mutations')
-      },
-    })
-  },
-})

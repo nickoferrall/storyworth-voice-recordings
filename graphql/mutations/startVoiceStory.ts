@@ -11,7 +11,7 @@ export const StartVoiceStoryMutation = extendType({
     t.nonNull.field('startVoiceStory', {
       type: 'VoiceStory',
       args: { phone: nonNull(stringArg()) },
-      resolve: async (_src, { phone }) => {
+      resolve: async (_src, { phone }, ctx: any) => {
         if (!RETELL_AGENT_ID) {
           throw new Error('Missing RETELL_AGENT_ID')
         }
@@ -21,6 +21,7 @@ export const StartVoiceStoryMutation = extendType({
             customerNumber: phone,
             fromNumber: RETELL_FROM_NUMBER,
             agentId: RETELL_AGENT_ID,
+            metadata: ctx?.anonKey ? { anon_key: ctx.anonKey } : undefined,
           })
           console.log('🚀 ~ response__:', response)
         } catch (err: any) {

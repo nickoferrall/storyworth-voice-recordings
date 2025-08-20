@@ -7,7 +7,7 @@ function createApolloClient(req: any) {
   const isServer = typeof window === 'undefined'
   const uri = isServer
     ? process.env.NODE_ENV === 'production'
-      ? 'https://fitlo.co/api/graphql'
+      ? 'https://storyworth-voice-recordings.fly.dev/api/graphql'
       : 'http://localhost:3000/api/graphql'
     : '/api/graphql'
 

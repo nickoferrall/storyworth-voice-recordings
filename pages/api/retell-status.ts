@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getRetellMemory } from './retell-webhook'
-import { getRetellCall } from '../../lib/retell'
+import { getRetellCall, RetellCall } from '../../lib/retell'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store')
@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.json({ id, ...mem })
   }
   getRetellCall(String(id))
-    .then((c: any) => {
+    .then((c: RetellCall) => {
       const status = c?.call_status || c?.status
       const transcript =
         c?.transcript ||

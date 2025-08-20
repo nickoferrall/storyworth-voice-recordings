@@ -19,6 +19,19 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
+export type Call = {
+  __typename?: 'Call';
+  audioUrl?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  endedAt?: Maybe<Scalars['DateTime']['output']>;
+  id: Scalars['String']['output'];
+  phoneE164?: Maybe<Scalars['String']['output']>;
+  retellCallId?: Maybe<Scalars['String']['output']>;
+  startedAt?: Maybe<Scalars['DateTime']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  transcript?: Maybe<Scalars['String']['output']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   startVoiceStory: VoiceStory;
@@ -31,6 +44,7 @@ export type MutationStartVoiceStoryArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  calls?: Maybe<Array<Maybe<Call>>>;
   retellCalls?: Maybe<Array<Maybe<VoiceStory>>>;
   retellVoiceStory?: Maybe<VoiceStory>;
   voiceStory?: Maybe<VoiceStory>;
@@ -60,7 +74,7 @@ export type VoiceStory = {
 export type RetellCallsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type RetellCallsQuery = { __typename?: 'Query', retellCalls?: Array<{ __typename?: 'VoiceStory', id: string, audioUrl?: string | null, transcript?: string | null, phoneE164?: string | null, createdAt?: any | null, updatedAt?: any | null } | null> | null };
+export type RetellCallsQuery = { __typename?: 'Query', calls?: Array<{ __typename?: 'Call', id: string, retellCallId?: string | null, audioUrl?: string | null, transcript?: string | null, phoneE164?: string | null, createdAt?: any | null, endedAt?: any | null } | null> | null };
 
 export type RetellVoiceStoryQueryVariables = Exact<{
   id: Scalars['String']['input'];
@@ -86,13 +100,14 @@ export type VoiceStoryQuery = { __typename?: 'Query', voiceStory?: { __typename?
 
 export const RetellCallsDocument = gql`
     query RetellCalls {
-  retellCalls {
+  calls {
     id
+    retellCallId
     audioUrl
     transcript
     phoneE164
     createdAt
-    updatedAt
+    endedAt
   }
 }
     `;

@@ -1,5 +1,3 @@
-// pages/api/graphql.js or graphql.ts
-
 import { ApolloServer, ApolloServerPlugin, BaseContext } from '@apollo/server'
 import { schema } from '../../graphql/schema'
 import { startServerAndCreateNextHandler } from '@as-integrations/next'
@@ -10,8 +8,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 const allowCors = (fn: any) => async (req: any, res: any) => {
   const allowedOrigins = [
-    'https://fitlo.co',
-    'https://www.fitlo.co',
+    'https://storyworth-voice-recordings.fly.dev',
     ...(process.env.NODE_ENV === 'development' ? ['http://localhost:3000'] : []),
   ]
 
@@ -109,7 +106,7 @@ const customHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const context = await createContext({ req, res })
 
     // If user is not a super user, return 404
-    if (!context.user?.isSuperUser) {
+    if (!(context as any).user?.isSuperUser) {
       res.status(404).json({ error: 'Not Found' })
       return
     }

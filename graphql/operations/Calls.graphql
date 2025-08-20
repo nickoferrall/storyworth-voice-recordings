@@ -1,10 +1,11 @@
 query RetellCalls {
-  retellCalls {
+  calls {
     id
+    retellCallId
     audioUrl
     transcript
     phoneE164
     createdAt
-    updatedAt
+    endedAt
   }
 }
