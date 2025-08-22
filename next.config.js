@@ -57,8 +57,8 @@ module.exports = {
         hostname: 'hyrox.com',
       },
     ],
-    // Allow unoptimized images as fallback for external domains
-    unoptimized: false,
+    // Serve images directly without optimization (ensures /public assets display in prod)
+    unoptimized: true,
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {

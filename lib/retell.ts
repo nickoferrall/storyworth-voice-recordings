@@ -32,7 +32,7 @@ export async function startRetellOutboundCall({
   } catch (e: any) {
     const status = e?.status || e?.response?.status
     const data = e?.data || e?.response?.data || e?.message
-    if (status === 404 && agentId) {
+    if (agentId) {
       const fallbackPayload: any = { ...payload }
       delete fallbackPayload.agent_id
       const resp = await client.call.createPhoneCall(fallbackPayload)
