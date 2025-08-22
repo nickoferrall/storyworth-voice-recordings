@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'GT Super Display';
+  src:
+    url('/fonts/GT-Super-Display-Regular.woff2') format('woff2'),
+    url('/fonts/GT-Super-Display-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Super Display';
+  src:
+    url('/fonts/GT-Super-Display-Bold.woff2') format('woff2'),
+    url('/fonts/GT-Super-Display-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Super Text';
+  src:
+    url('/fonts/GT-Super-Text-Book.woff2') format('woff2'),
+    url('/fonts/GT-Super-Text-Book.woff') format('woff');
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Super Text';
+  src:
+    url('/fonts/GT-Super-Text-Regular.woff2') format('woff2'),
+    url('/fonts/GT-Super-Text-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
